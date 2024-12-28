@@ -1,11 +1,51 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const flowers = await getCollection('flowers')
+
+export const prerender = true
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Flowers Store, tienda de flores">
+	<main>
+		<h1 class="text-center text-7xl font-extrabold mb-24 text-white">
+			Flowers <span>Store</span>🌺
+		</h1>
+
+
+	<section aria-label="Origen de alguna de las flores mas extraordinarias">
+		<div class="px-4 mx-auto max-w-screen-xl">
+			<div class="grid gap-6 md:grid-cols-2">
+				{
+					flowers.map(flower => {
+						const {slug,data} = flower
+						const {title, author,img,readtime,description,buy} = data 
+						
+						return(
+							<article class="flex">
+								<a href={`/flower/${slug}`} class="mb-2 xl:mb-0 transition hover:scale-110">
+								<img 
+									transition:name={`img-${slug}`}
+									class="mr-50 w-36 h-40 rounded"
+									src={`/${img}`}
+									alt={title}	
+									/>
+								</a>
+								<div class="flex flex-col justify-center">
+									<h2 
+										transition:name={`title-${slug}`}
+										class="mb-2 text-2xl font-extrabold leading-tight text-white">
+										{title}
+									</h2>
+									<p class="mb-4 max-w-sm text-white">{description}</p>
+									<span class="text-xs text-amber-300">Lectura en {readtime} minutos</span>
+								</div>
+							</article>
+						)
+					})
+				}
+			</div>
+		</div>
+	</section>
 </Layout>
