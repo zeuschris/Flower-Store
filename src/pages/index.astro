@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ScrollReveal from '../components/ScrollAnimations.astro';
 
 const flowers = [
   {
@@ -56,8 +57,10 @@ const flowers = [
 <Layout title="Flowers Store🌺">
   <section class="relative overflow-hidden py-20 md:py-32">
     <div class="absolute inset-0 bg-gradient-to-br from-rose-100 via-purple-50 to-pink-100 dark:from-purple-900/30 dark:via-gray-800/50 dark:to-pink-900/30 opacity-50 transition-colors duration-300"></div>
-    <div class="absolute top-20 right-10 w-72 h-72 bg-rose-300 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-30 animate-float transition-colors duration-300"></div>
-    <div class="absolute bottom-20 left-10 w-72 h-72 bg-purple-300 dark:bg-pink-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-30 animate-float transition-colors duration-300" style="animation-delay: 2s;"></div>
+    
+    <div id="parallax-1" class="absolute top-20 right-10 w-72 h-72 bg-rose-300 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-30 transition-colors duration-300"></div>
+    <div id="parallax-2" class="absolute bottom-20 left-10 w-72 h-72 bg-purple-300 dark:bg-pink-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-30 transition-colors duration-300"></div>
+    <div id="parallax-3" class="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-300 dark:bg-rose-600 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20 transition-colors duration-300 transform -translate-x-1/2 -translate-y-1/2"></div>
     
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
@@ -76,7 +79,7 @@ const flowers = [
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="#catalogo" 
+          <a href="/#catalogo" 
              class="group px-8 py-4 bg-gradient-to-r from-rose-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
             <span>Ver Catálogo</span>
             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,8 +87,8 @@ const flowers = [
             </svg>
           </a>
           
-          <a href="#sobre-nosotros" 
-             class="px-8 py-4 bg-white text-gray-700 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-gray-200 hover:border-rose-300">
+          <a href="/#sobre-nosotros" 
+             class="px-8 py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-gray-200 dark:border-purple-700 hover:border-rose-300 dark:hover:border-rose-400">
             Conocer Más
           </a>
         </div>
@@ -101,62 +104,74 @@ const flowers = [
 
   <section id="catalogo" class="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-rose-600 to-purple-600 dark:from-rose-400 dark:to-purple-400 bg-clip-text text-transparent">
-          Nuestras Flores
-        </h2>
-        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors duration-300">
-          Cada flor cuenta una historia única de belleza y elegancia
-        </p>
-      </div>
+      <ScrollReveal animation="fade-up">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-rose-600 to-purple-600 dark:from-rose-400 dark:to-purple-400 bg-clip-text text-transparent">
+            Nuestras Flores
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors duration-300">
+            Cada flor cuenta una historia única de belleza y elegancia
+          </p>
+        </div>
+      </ScrollReveal>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {flowers.map((flower, index) => (
-          <article 
-            class="group relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-purple-800"
-            style={`animation-delay: ${index * 100}ms;`}
-          >
-      
-            <div class={`absolute inset-0 bg-gradient-to-br ${flower.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
-            
-            <div class="relative h-72 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900 flex items-center justify-center">
-              <img 
-                src={flower.image} 
-                alt={flower.name}
-                class="w-full h-full object-contain p-4 transform group-hover:scale-110 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
+        {flowers.map((flower, index) => {
+          const gradientClass = `absolute inset-0 bg-gradient-to-br ${flower.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`;
+          
+          return (
+            <ScrollReveal animation="fade-up" delay={index * 100}>
+              <article class="group relative rounded-2xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2 glass-card">
+                <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-rose-400/50 via-purple-400/50 to-pink-400/50 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+                
+                <div class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-gray-200/50 dark:border-purple-800/50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                  <div class={gradientClass}></div>
+                  
+                  <div class="relative h-72 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900 flex items-center justify-center">
+                    <img 
+                      src={flower.image} 
+                      alt={flower.name}
+                      class="w-full h-full object-contain p-4 transform group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
 
-            <div class="p-6">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="text-2xl font-bold dark:text-white group-hover:text-purple-400  transition-colors">
-                  {flower.name}
-                </h3>
-                <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-                  ⏱️ {flower.readTime}
-                </span>
-              </div>
-              
-              <p class="text-gray-600 dark:text-gray-300 mb-6 line-clamp-2">
-                {flower.description}
-              </p>
+                  <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                      <h3 class="text-2xl font-bold text-gray-900 dark:text-white transition-colors">
+                        {flower.name}
+                      </h3>
+                      <span class="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full whitespace-nowrap transition-colors duration-300">
+                        ⏱️ {flower.readTime}
+                      </span>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 line-clamp-2 transition-colors duration-300">
+                      {flower.description}
+                    </p>
 
-              <a 
-                href={`/flower/${flower.slug}`}
-                class="inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-rose-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 group/btn"
-              >
-                <span>Descubrir más</span>
-                <svg class="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
+                    <a 
+                      href={`/flower/${flower.slug}`}
+                      class="group/btn relative inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-rose-600 to-purple-600 text-white rounded-xl font-semibold overflow-hidden transition-all duration-300"
+                    >
+                      <span class="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></span>
+                      
+                      <span class="relative flex items-center">
+                        <span>Descubrir más</span>
+                        <svg class="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
 
-            <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-rose-400 to-purple-400 opacity-0 group-hover:opacity-20 rounded-bl-full transition-opacity duration-300"></div>
-          </article>
-        ))}
+                  <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-rose-400 to-purple-400 opacity-0 group-hover:opacity-20 rounded-bl-full blur-2xl transition-opacity duration-500"></div>
+                </div>
+              </article>
+            </ScrollReveal>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -206,7 +221,7 @@ const flowers = [
             Con años de experiencia en el arte floral, seleccionamos cuidadosamente cada flor para garantizar la máxima frescura y belleza. Nuestro compromiso es traer alegría a tu vida a través de la naturaleza.
           </p>
           <a 
-            href="#catalogo"
+            href="/#catalogo"
             class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-rose-600 to-purple-600 text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
           >
             Explorar Catálogo
@@ -232,11 +247,6 @@ const flowers = [
     }
   }
 
-  article {
-    animation: fadeInUp 0.6s ease-out forwards;
-    opacity: 0;
-  }
-
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -252,4 +262,38 @@ const flowers = [
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
+
+  .glass-card {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
 </style>
+
+<script>
+  function initParallax() {
+    const parallax1 = document.getElementById('parallax-1');
+    const parallax2 = document.getElementById('parallax-2');
+    const parallax3 = document.getElementById('parallax-3');
+    
+    if (!parallax1 || !parallax2 || !parallax3) return;
+
+    function handleScroll() {
+      const scrollY = window.scrollY;
+      
+      if (parallax1) {
+        parallax1.style.transform = `translateY(${scrollY * 0.3}px)`;
+      }
+      if (parallax2) {
+        parallax2.style.transform = `translateY(${scrollY * 0.5}px)`;
+      }
+      if (parallax3) {
+        parallax3.style.transform = `translate(-50%, -50%) translateY(${scrollY * 0.2}px)`;
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  }
+
+  document.addEventListener('DOMContentLoaded', initParallax);
+  document.addEventListener('astro:page-load', initParallax);
+</script>
