@@ -152,7 +152,7 @@ const colorClasses = {
 };
 ---
 
-<Layout title={`${flower.name} - Flowers Store🌺`}>
+<Layout title={`${flower.name} - Flowers Store🌺`} showProgressBar={true}>
   <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-purple-800 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       <nav class="flex items-center space-x-2 text-sm">
@@ -177,7 +177,7 @@ const colorClasses = {
               class="w-full h-auto max-h-[500px] object-contain"
             />
           </div>
-          
+
           <div class="absolute top-6 left-6 flex flex-col space-y-2">
             <span class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-gray-900 shadow-lg">
               ✨ Premium
@@ -193,17 +193,17 @@ const colorClasses = {
             {flower.name}
           </h1>
           
-          <p class="text-xl text-gray-700 dark:text-gray-900 mb-6 font-medium transition-colors duration-300">
+          <p class="text-xl text-gray-700 dark:text-gray-300 mb-6 font-medium transition-colors duration-300">
             {flower.description}
           </p>
           
-          <p class="text-lg text-gray-800 dark:text-gray-600 mb-8 leading-relaxed transition-colors duration-300">
+          <p class="text-lg text-gray-800 dark:text-gray-400 mb-8 leading-relaxed transition-colors duration-300">
             {flower.longDescription}
           </p>
 
           <div class="mb-8">
-            <span class="text-4xl font-bold text-gray-900 dark:text-white-500 transition-colors duration-300">{flower.price}</span>
-            <span class="text-lg text-gray-600 dark:text-gray-500 ml-2 transition-colors duration-300">por ramo</span>
+            <span class="text-4xl font-bold text-gray-900 dark:text-white transition-colors duration-300">{flower.price}</span>
+            <span class="text-lg text-gray-600 dark:text-gray-400 ml-2 transition-colors duration-300">por ramo</span>
           </div>
 
           <a 
@@ -222,14 +222,14 @@ const colorClasses = {
           </a>
 
           <div class="mb-8">
-            <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white-500 transition-colors duration-300">Características</h3>
+            <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white transition-colors duration-300">Características</h3>
             <ul class="space-y-3">
               {flower.features.map(feature => (
                 <li class="flex items-start space-x-3">
                   <svg class="w-6 h-6 text-rose-600 dark:text-rose-400 flex-shrink-0 mt-0.5 transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                   </svg>
-                  <span class="text-gray-800 dark:text-gray-600 font-medium transition-colors duration-300">{feature}</span>
+                  <span class="text-gray-800 dark:text-gray-300 font-medium transition-colors duration-300">{feature}</span>
                 </li>
               ))}
             </ul>
