@@ -8,7 +8,7 @@
 
 ## 🌐 Demo en Vivo
 
-**[Ver Demo → https://floral-sky.vercel.app/](https://floral-sky.vercel.app/)**
+**[Ver Demo → Flowers Store](https://floral-sky.vercel.app/)**
 
 ---
 
@@ -60,10 +60,10 @@ Flowers-Store/
 ├── src/
 │   ├── components/
 │   │   ├──ScrollAnimations.astro
-        ├── AmazonLogo.astro
-        ├── BuyButton.astro
-        ├── FlowerCard.astro
-        └── FlowerScore.astro
+        ├──AmazonLogo.astro
+        ├──BuyButton.astro
+        ├──FlowerCard.astro
+        └──FlowerScore.astro
 │   ├── layouts/
 │   │   └── Layout.astro
 │   └── pages/
@@ -247,7 +247,5 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 **Christopher Montes**
 
 - GitHub: [@zeuschris](https://github.com/zeuschris)
-- Proyecto: [Flowers Store](https://github.com/zeuschris/Flower-Store)
-- Demo: [https://floral-sky.vercel.app/](https://floral-sky.vercel.app/)
 
 ---
