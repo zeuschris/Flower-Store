@@ -1,0 +1,307 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const flowersData = {
+  azucena: {
+    name: 'Azucenas',
+    description: 'Las impecables azucenas destacan por su inmaculado color blanco.',
+    longDescription: 'Las azucenas son flores elegantes y puras que simbolizan la inocencia y la virtud. Su perfume delicado y su forma majestuosa las convierten en una elección perfecta para bodas y ocasiones especiales. Estas flores perennes son conocidas por su resistencia y belleza duradera.',
+    image: '/azucenas.png',
+    price: '$24.99',
+    amazonLink: 'https://amazon.com/flores-azucenas',
+    features: [
+      'Flores frescas y duraderas',
+      'Aroma delicado y natural',
+      'Perfectas para eventos especiales',
+      'Simbolizan pureza y elegancia'
+    ],
+    care: [
+      'Cambiar el agua cada 2 días',
+      'Cortar los tallos en diagonal',
+      'Mantener alejadas de la luz solar directa',
+      'Temperatura ambiente entre 18-22°C'
+    ],
+    gradient: 'from-white to-gray-100',
+    color: 'rose'
+  },
+  girasol: {
+    name: 'Girasoles',
+    description: 'Las girasoles desbordan belleza y energia en sus colores.',
+    longDescription: 'Los girasoles son el símbolo perfecto de la alegría y la vitalidad. Con sus pétalos amarillos brillantes y su centro oscuro característico, estas flores siguen al sol durante el día, representando lealtad y adoración. Son ideales para traer luz y energía positiva a cualquier espacio.',
+    image: '/girasol.png',
+    price: '$19.99',
+    amazonLink: 'https://amazon.com/flores-girasoles',
+    features: [
+      'Color amarillo vibrante',
+      'Simbolizan felicidad y optimismo',
+      'Tamaño grande e imponente',
+      'Perfectos para decoración del hogar'
+    ],
+    care: [
+      'Requieren mucha luz natural',
+      'Regar abundantemente',
+      'Cortar tallos cada semana',
+      'Duración de 7-14 días'
+    ],
+    gradient: 'from-yellow-100 to-orange-100',
+    color: 'yellow'
+  },
+  lirio: {
+    name: 'Lirios',
+    description: 'Los lirios son flores que tienen mucha variedad de colores y también poseen una exquisita fragancia.',
+    longDescription: 'Los lirios son flores sofisticadas que vienen en una amplia gama de colores, desde blancos puros hasta rosas vibrantes y púrpuras profundos. Su fragancia intensa y su apariencia elegante los convierten en una de las flores más apreciadas para arreglos florales y regalos especiales.',
+    image: '/lirio.png',
+    price: '$29.99',
+    amazonLink: 'https://amazon.com/flores-lirios',
+    features: [
+      'Variedad de colores disponibles',
+      'Fragancia intensa y duradera',
+      'Flores de gran tamaño',
+      'Elegantes y sofisticadas'
+    ],
+    care: [
+      'Agua limpia y fresca diariamente',
+      'Remover anteras para evitar manchas',
+      'Luz indirecta brillante',
+      'Duración de 8-12 días'
+    ],
+    gradient: 'from-purple-100 to-pink-100',
+    color: 'purple'
+  },
+  lisianthus: {
+    name: 'Lisianthus',
+    description: 'Esta flor es conocida por su inmensa belleza que irradia en sus colores vivos.',
+    longDescription: 'El lisianthus es una flor delicada con pétalos suaves que parecen papel de seda. Sus colores vivos y su forma elegante la convierten en una opción popular para bodas y celebraciones. Representa el carisma y la gratitud, siendo perfecta para expresar aprecio sincero.',
+    image: '/lisianthus.png',
+    price: '$34.99',
+    amazonLink: 'https://amazon.com/flores-lisianthus',
+    features: [
+      'Pétalos delicados tipo seda',
+      'Colores vibrantes y variados',
+      'Ideal para bodas y eventos',
+      'Simbolizan carisma y gratitud'
+    ],
+    care: [
+      'Cambiar agua cada 2-3 días',
+      'Cortar tallos semanalmente',
+      'Ambiente fresco y ventilado',
+      'Duración de 10-14 días'
+    ],
+    gradient: 'from-pink-100 to-rose-100',
+    color: 'pink'
+  },
+  pensamiento: {
+    name: 'Pensamiento',
+    description: 'Las flores pensamientos poseen una extensa variedad de colores muy vivos que le dan una belleza extraordinaria.',
+    longDescription: 'Los pensamientos son flores pequeñas pero llenas de personalidad, con una amplia variedad de colores y patrones únicos. Estas flores resistentes son perfectas para jardines y arreglos, simbolizando el recuerdo y el pensamiento amoroso hacia alguien especial.',
+    image: '/pensamiento.png',
+    price: '$16.99',
+    amazonLink: 'https://amazon.com/flores-pensamiento',
+    features: [
+      'Amplia variedad de colores',
+      'Patrones únicos en cada flor',
+      'Flores resistentes y duraderas',
+      'Perfectas para jardines'
+    ],
+    care: [
+      'Riego moderado regular',
+      'Sol parcial a pleno',
+      'Suelo bien drenado',
+      'Resistentes al frío'
+    ],
+    gradient: 'from-violet-100 to-purple-100',
+    color: 'violet'
+  },
+  rosa: {
+    name: 'Rosas',
+    description: 'Contempla la belleza y el perfume de las rosas.',
+    longDescription: 'Las rosas son las flores más icónicas y románticas del mundo. Con su fragancia embriagadora y su belleza atemporal, han sido el símbolo del amor y la pasión durante siglos. Disponibles en innumerables colores, cada uno con su propio significado especial.',
+    image: '/rosa.png',
+    price: '$39.99',
+    amazonLink: 'https://amazon.com/flores-rosas',
+    features: [
+      'Símbolo universal del amor',
+      'Fragancia embriagadora',
+      'Disponibles en muchos colores',
+      'Clásicas y atemporales'
+    ],
+    care: [
+      'Agua fresca diaria',
+      'Cortar tallos en ángulo',
+      'Remover hojas sumergidas',
+      'Duración de 7-10 días'
+    ],
+    gradient: 'from-rose-100 to-red-100',
+    color: 'rose'
+  }
+};
+
+const { slug } = Astro.params;
+const flower = flowersData[slug as keyof typeof flowersData];
+
+if (!flower) {
+  return Astro.redirect('/404');
+}
+
+const colorClasses = {
+  rose: 'from-rose-600 to-pink-600',
+  yellow: 'from-yellow-500 to-orange-500',
+  purple: 'from-purple-600 to-pink-600',
+  pink: 'from-pink-600 to-rose-600',
+  violet: 'from-violet-600 to-purple-600'
+};
+---
+
+<Layout title={`${flower.name} - Flowers Store🌺`}>
+  <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-purple-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <nav class="flex items-center space-x-2 text-sm">
+        <a href="/" class="text-gray-500 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-400 transition-colors">Inicio</a>
+        <span class="text-gray-400 dark:text-gray-600">/</span>
+        <a href="/#catalogo" class="text-gray-500 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-400 transition-colors">Catálogo</a>
+        <span class="text-gray-400 dark:text-gray-600">/</span>
+        <span class="text-gray-900 dark:text-white font-medium">{flower.name}</span>
+      </nav>
+    </div>
+  </div>
+
+  <section class="py-12 md:py-20 bg-gradient-to-br from-rose-50 via-white to-purple-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="relative">
+          <div class={`absolute inset-0 bg-gradient-to-br ${flower.gradient} dark:opacity-20 rounded-3xl transform rotate-3 opacity-30 transition-opacity duration-300`}></div>
+          <div class="relative bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden p-8 flex items-center justify-center min-h-[400px] border border-gray-100 dark:border-purple-800 transition-colors duration-300">
+            <img 
+              src={flower.image} 
+              alt={flower.name}
+              class="w-full h-auto max-h-[500px] object-contain"
+            />
+          </div>
+          
+          <div class="absolute top-6 left-6 flex flex-col space-y-2">
+            <span class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-gray-900 shadow-lg">
+              ✨ Premium
+            </span>
+            <span class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-gray-900 shadow-lg">
+              🚚 Envío Gratis
+            </span>
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-center">
+          <h1 class={`text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r ${colorClasses[flower.color as keyof typeof colorClasses]} bg-clip-text text-transparent`}>
+            {flower.name}
+          </h1>
+          
+          <p class="text-xl text-gray-700 dark:text-gray-900 mb-6 font-medium transition-colors duration-300">
+            {flower.description}
+          </p>
+          
+          <p class="text-lg text-gray-800 dark:text-gray-600 mb-8 leading-relaxed transition-colors duration-300">
+            {flower.longDescription}
+          </p>
+
+          <div class="mb-8">
+            <span class="text-4xl font-bold text-gray-900 dark:text-white-500 transition-colors duration-300">{flower.price}</span>
+            <span class="text-lg text-gray-600 dark:text-gray-500 ml-2 transition-colors duration-300">por ramo</span>
+          </div>
+
+          <a 
+            href={flower.amazonLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`inline-flex items-center justify-center w-full md:w-auto px-8 py-4 bg-gradient-to-r ${colorClasses[flower.color as keyof typeof colorClasses]} text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 mb-12 group`}
+          >
+            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18.36 9l.6 3H5.04l.6-3h12.72M20 4H4v2h16V4m0 3H4l-1 5v2h1v6h10v-6h4v6h2v-6h1v-2l-1-5M6 18v-4h6v4H6z"/>
+            </svg>
+            <span>Comprar en Amazon</span>
+            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white-500 transition-colors duration-300">Características</h3>
+            <ul class="space-y-3">
+              {flower.features.map(feature => (
+                <li class="flex items-start space-x-3">
+                  <svg class="w-6 h-6 text-rose-600 dark:text-rose-400 flex-shrink-0 mt-0.5 transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-gray-800 dark:text-gray-600 font-medium transition-colors duration-300">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-purple-700 transition-colors duration-300">
+            <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white flex items-center transition-colors duration-300">
+              <span class="mr-2">💧</span>
+              Consejos de Cuidado
+            </h3>
+            <ul class="space-y-3">
+              {flower.care.map(tip => (
+                <li class="flex items-start space-x-3">
+                  <span class="text-rose-600 dark:text-rose-400 font-bold text-lg transition-colors duration-300">•</span>
+                  <span class="text-gray-800 dark:text-gray-300 transition-colors duration-300">{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-6 bg-gradient-to-br from-rose-50 to-purple-50 dark:from-gray-900 dark:to-purple-900/30 rounded-2xl transition-colors duration-300">
+          <div class="text-5xl mb-4">🌸</div>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white transition-colors duration-300">Frescura Garantizada</h3>
+          <p class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Flores recién cortadas de la mejor calidad</p>
+        </div>
+        <div class="text-center p-6 bg-gradient-to-br from-rose-50 to-purple-50 dark:from-gray-900 dark:to-purple-900/30 rounded-2xl transition-colors duration-300">
+          <div class="text-5xl mb-4">🚚</div>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white transition-colors duration-300">Envío Rápido</h3>
+          <p class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Entrega en 24-48 horas a través de Amazon</p>
+        </div>
+        <div class="text-center p-6 bg-gradient-to-br from-rose-50 to-purple-50 dark:from-gray-900 dark:to-purple-900/30 rounded-2xl transition-colors duration-300">
+          <div class="text-5xl mb-4">💯</div>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white transition-colors duration-300">Satisfacción Total</h3>
+          <p class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Garantía de devolución del 100%</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="py-12 text-center bg-gradient-to-br from-rose-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900 transition-colors duration-300">
+    <a 
+      href="/#catalogo"
+      class="inline-flex items-center px-6 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-gray-200 dark:border-purple-700 hover:border-rose-300 dark:hover:border-rose-400"
+    >
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Volver al Catálogo
+    </a>
+  </div>
+</Layout>
+
+<style>
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  section > div > div {
+    animation: slideInRight 0.6s ease-out;
+  }
+</style>

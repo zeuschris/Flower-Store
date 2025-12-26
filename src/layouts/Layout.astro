@@ -1,7 +1,6 @@
 ---
-import { ClientRouter } from 'astro:transitions';
 interface Props {
-	title: String;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -9,37 +8,260 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{title}</title>
-		<ClientRouter/>
-	</head>
-	<body>
-		<div>
-			<slot />
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Flowers Store - Las flores más hermosas para cada ocasión" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  
+    <script is:inline>
+      const getThemePreference = () => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+      
+      const isDark = getThemePreference() === 'dark';
+      document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+    </script>
+  </head>
+  
+  <body class="bg-gradient-to-br from-rose-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900 min-h-screen transition-colors duration-300">
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/70 dark:bg-gray-900/70 border-b border-rose-100 dark:border-purple-800 shadow-sm transition-colors duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <a href="/" class="flex items-center space-x-2 group">
+            <span class="text-3xl group-hover:scale-110 transition-transform duration-300">🌺</span>
+            <span class="text-xl font-bold bg-gradient-to-r from-rose-600 to-purple-600 dark:from-rose-400 dark:to-purple-400 bg-clip-text text-transparent">
+              Flowers Store
+            </span>
+          </a>
+          
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="/" class="text-gray-700 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors font-medium">
+              Inicio
+            </a>
+            <a href="/#catalogo" class="text-gray-700 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors font-medium">
+              Catálogo
+            </a>
+            <a href="/#sobre-nosotros" class="text-gray-700 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors font-medium">
+              Sobre Nosotros
+            </a>
+            
+            <button 
+              id="theme-toggle" 
+              class="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-gray-800 transition-colors group"
+              aria-label="Toggle dark mode"
+            >
+              <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-gray-700 dark:text-gray-300 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+              </svg>
+              <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-gray-700 dark:text-gray-300 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="md:hidden flex items-center space-x-2">
+            <button 
+              id="theme-toggle-mobile" 
+              class="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              <svg id="theme-toggle-dark-icon-mobile" class="hidden w-5 h-5 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+              </svg>
+              <svg id="theme-toggle-light-icon-mobile" class="hidden w-5 h-5 text-gray-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            
+            <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-rose-50 dark:hover:bg-gray-800 transition-colors">
+              <svg class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="hidden md:hidden border-t border-rose-100 dark:border-purple-800 bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="px-4 py-4 space-y-3">
+          <a href="/" class="block text-gray-700 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors font-medium py-2">
+            Inicio
+          </a>
+          <a href="/#catalogo" class="block text-gray-700 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors font-medium py-2">
+            Catálogo
+          </a>
+          <a href="/#sobre-nosotros" class="block text-gray-700 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors font-medium py-2">
+            Sobre Nosotros
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="h-16"></div>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="mt-20 bg-gradient-to-br from-rose-900 to-purple-900 dark:from-gray-950 dark:to-purple-950 text-white transition-colors duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-2xl font-bold mb-4 flex items-center space-x-2">
+              <span>🌺</span>
+              <span>Flowers Store</span>
+            </h3>
+            <p class="text-rose-100 dark:text-purple-200">
+              Las flores más hermosas para cada ocasión especial.
+            </p>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-4">Enlaces Rápidos</h4>
+            <ul class="space-y-2 text-rose-100 dark:text-purple-200">
+              <li><a href="/" class="hover:text-white transition-colors">Inicio</a></li>
+              <li><a href="/#catalogo" class="hover:text-white transition-colors">Catálogo</a></li>
+              <li><a href="/#sobre-nosotros" class="hover:text-white transition-colors">Sobre Nosotros</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-4">Síguenos</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+              <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-8 pt-8 border-t border-white/10 text-center text-rose-100 dark:text-purple-200">
+          <p>&copy; 2025 Flowers Store. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      function initTheme() {
+        const themeToggleBtns = [
+          document.getElementById('theme-toggle'),
+          document.getElementById('theme-toggle-mobile')
+        ];
+        
+        const darkIcons = [
+          document.getElementById('theme-toggle-dark-icon'),
+          document.getElementById('theme-toggle-dark-icon-mobile')
+        ];
+        
+        const lightIcons = [
+          document.getElementById('theme-toggle-light-icon'),
+          document.getElementById('theme-toggle-light-icon-mobile')
+        ];
+
+        function updateIcons() {
+          const isDark = document.documentElement.classList.contains('dark');
+          darkIcons.forEach(icon => icon?.classList.toggle('hidden', isDark));
+          lightIcons.forEach(icon => icon?.classList.toggle('hidden', !isDark));
+        }
+
+        function toggleTheme() {
+          document.documentElement.classList.toggle('dark');
+          const isDark = document.documentElement.classList.contains('dark');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+          updateIcons();
+        }
+
+        themeToggleBtns.forEach(btn => {
+          btn?.addEventListener('click', toggleTheme);
+        });
+
+        updateIcons();
+      }
+
+      function initNavigation() {
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        
+        btn?.addEventListener('click', () => {
+          menu?.classList.toggle('hidden');
+        });
+
+        function smoothScrollToHash(hash) {
+          const target = document.getElementById(hash);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+            menu?.classList.add('hidden');
+          }
+        }
+
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            
+            if (href) {
+              const [path, hash] = href.split('#');
+              
+              if (!path && hash) {
+                e.preventDefault();
+                smoothScrollToHash(hash);
+              } else if ((path === '/' || path === '') && hash) {
+                if (window.location.pathname === '/') {
+                  e.preventDefault();
+                  smoothScrollToHash(hash);
+                }
+              }
+            }
+          });
+        });
+
+        if (window.location.hash) {
+          setTimeout(() => {
+            smoothScrollToHash(window.location.hash.slice(1));
+          }, 100);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        initTheme();
+        initNavigation();
+      });
+    </script>
+
+    <style>
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      * {
+        transition-property: background-color, border-color, color;
+        transition-duration: 300ms;
+        transition-timing-function: ease-in-out;
+      }
+
+      .animate-float,
+      [class*="group-hover"],
+      [class*="hover:scale"],
+      [class*="hover:translate"] {
+        transition-property: transform;
+      }
+    </style>
+  </body>
 </html>
-
-<style>
-	html {
-		font-family: system-ui, sans-serif;
-		background-image: url('https://wallpapers.com/images/featured/4k-bosque-7sfd6znw2ry6hnlt.jpg');
-		background-position: top;
-		background-repeat: no-repeat;
-		background-size: cover;
-		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-		color: #fff;
-	}
-
-	body{
-		@apply grid place-content-center p-20;
-	}
-
-	body > div {
-		@apply container;
-	}
-	
-</style>
